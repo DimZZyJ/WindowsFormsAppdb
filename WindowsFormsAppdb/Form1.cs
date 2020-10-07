@@ -178,5 +178,93 @@ namespace WindowsFormsAppdb
         {
 
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            
+            using (var db = new police_dbContext())
+            {
+                string choice = comboBox1.Text;
+                switch (choice)
+                {
+                    case "":
+                        MessageBox.Show("не выбрана таблица");
+                        break;
+                    case "Citizen":
+                        try
+                        {
+                            var delete = db.Citizen.Single(a => a.CitizenId == int.Parse(dataGridView1.CurrentRow.Cells[0].Value.ToString()));
+                            db.Citizen.Remove(delete);
+                            db.SaveChanges();
+                        }
+                        catch
+                        {
+                            MessageBox.Show("От этого зависят значения других таблиц");
+                        }
+                        break;
+                    case "Employee":
+                        try
+                        {
+                            var delete = db.Employee.Single(a => a.EmpId == int.Parse(dataGridView1.CurrentRow.Cells[0].Value.ToString()));
+                            db.Employee.Remove(delete);
+                            db.SaveChanges();
+                        }
+                        catch
+                        {
+                            MessageBox.Show("От этого зависят значения других таблиц");
+                        }
+                        break;
+                    case "Fine":
+                        try
+                        {
+                            var delete = db.Fine.Single(a => a.VialatorId == int.Parse(dataGridView1.CurrentRow.Cells[0].Value.ToString()));
+                            db.Fine.Remove(delete);
+                            db.SaveChanges();
+                        }
+                        catch
+                        {
+                            MessageBox.Show("От этого зависят значения других таблиц");
+                        }
+                        break;
+                    case "Insurance":
+                        try
+                        {
+                            var delete = db.Insurance.Single(a => a.InsuranceSerialnumber == dataGridView1.CurrentRow.Cells[1].Value.ToString());
+                            db.Insurance.Remove(delete);
+                            db.SaveChanges();
+                        }
+                        catch
+                        {
+                            MessageBox.Show("От этого зависят значения других таблиц");
+                        }
+                        break;
+                    case "License":
+                        try
+                        {
+                            var delete = db.License.Single(a => a.LicenseId == int.Parse(dataGridView1.CurrentRow.Cells[0].Value.ToString()));
+                            db.License.Remove(delete);
+                            db.SaveChanges();
+                        }
+                        catch
+                        {
+                            MessageBox.Show("От этого зависят значения других таблиц");
+                        }
+                        break;
+                    case "TechPasport":
+                        try
+                        {
+                            var delete = db.TechPasport.Single(a => a.TechPassId == int.Parse(dataGridView1.CurrentRow.Cells[0].Value.ToString()));
+                            db.TechPasport.Remove(delete);
+                            db.SaveChanges();
+                        }
+                        catch
+                        {
+                            MessageBox.Show("От этого зависят значения других таблиц");
+                        }
+                        break;
+                }
+            }
+                
+        }//удаление
     }
 }
