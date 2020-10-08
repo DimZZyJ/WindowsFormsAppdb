@@ -18,6 +18,7 @@ namespace WindowsFormsAppdb
     
     public partial class Form1 : Form
     {
+        
         public void GetMeCitizen()//метод для получения списка граждан
         {
             
@@ -136,7 +137,7 @@ namespace WindowsFormsAppdb
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        public void button1_Click(object sender, EventArgs e)//обновить
         {
             string n=comboBox1.Text;
             switch (n)
@@ -169,9 +170,9 @@ namespace WindowsFormsAppdb
 
         }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        public void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            button1_Click(sender, e);
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -179,7 +180,7 @@ namespace WindowsFormsAppdb
 
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs e)//удаление
         {
             
             using (var db = new police_dbContext())
@@ -265,6 +266,119 @@ namespace WindowsFormsAppdb
                 }
             }
                 
-        }//удаление
+        }
+
+        private void button3_Click(object sender, EventArgs e)//изменение
+        {
+            string n = comboBox1.Text;
+            try
+            {
+                switch (n)
+                {
+                    case "":
+                        MessageBox.Show("не выбрана таблица");
+                        break;
+                    case "Citizen":
+                        EditCitizen();
+                        break;
+                    case "Employee":
+                        EditEmployee();
+                        break;
+                    case "Fine":
+
+                        break;
+                    case "Insurance":
+                        EditInsurance();
+
+                        break;
+                    case "License":
+                        EditLicense();
+                        break;
+                    case "TechPasport":
+                        EditTechPasport();
+                        break;
+
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Невозможно изменить");
+            }
+            
+            button1_Click(sender,e);
+        }
+        public void EditCitizen()//изменеие граждан
+        {
+            using (var db = new police_dbContext())
+            {
+                var edit = db.Citizen.Single(a => a.CitizenId == int.Parse(dataGridView1.CurrentRow.Cells[0].Value.ToString()));
+                edit.CitizenFio = dataGridView1.CurrentRow.Cells[1].Value.ToString();
+                db.SaveChanges();
+            }
+        }
+
+        public void EditEmployee()//изменеие работников
+        {
+            using (var db = new police_dbContext())
+            {
+                var edit = db.Employee.Single(a => a.EmpId == int.Parse(dataGridView1.CurrentRow.Cells[0].Value.ToString()));
+                edit.EmpFio = dataGridView1.CurrentRow.Cells[1].Value.ToString();
+                //edit.WorkDate = DateTime.Parse(dataGridView1.CurrentRow.Cells[2].Value.ToString());
+                edit.WorkStatus = dataGridView1.CurrentRow.Cells[3].Value.ToString();
+                //edit.LeaveDate = DateTime.Parse(dataGridView1.CurrentRow.Cells[4].Value.ToString());
+                edit.EmpPosition = int.Parse(dataGridView1.CurrentRow.Cells[5].Value.ToString());
+                db.SaveChanges();
+            }
+        }
+
+        //public void EditFine()//изменеие штрафа
+        //{
+        //    using (var db = new police_dbContext())
+        //    {
+        //        var edit = db.Fine.Single(a => a.VialatorId == int.Parse(dataGridView1.CurrentRow.Cells[0].Value.ToString()));
+        //        edit.VialatorId = int.Parse(dataGridView1.CurrentRow.Cells[0].Value.ToString());
+        //        edit.Ammount = int.Parse(dataGridView1.CurrentRow.Cells[1].Value.ToString());
+        //        edit.VialatorId = int.Parse(dataGridView1.CurrentRow.Cells[0].Value.ToString());
+        //        db.SaveChanges();
+        //    }
+        //}
+        public void EditInsurance()//изменеие страховки
+        {
+            using (var db = new police_dbContext())
+            {
+                var edit = db.Insurance.Single(a => a.InsuranceSerialnumber == dataGridView1.CurrentRow.Cells[0].Value.ToString());
+                edit.InsuranceFrom = DateTime.Parse(dataGridView1.CurrentRow.Cells[2].Value.ToString());
+                edit.InsuranceBefore = DateTime.Parse(dataGridView1.CurrentRow.Cells[3].Value.ToString());
+                db.SaveChanges();
+            }
+        }
+
+        public void EditLicense()//изменеие прав
+        {
+            using (var db = new police_dbContext())
+            {
+                var edit = db.License.Single(a => a.LicenseId == int.Parse(dataGridView1.CurrentRow.Cells[0].Value.ToString()));
+                edit.FromData = DateTime.Parse(dataGridView1.CurrentRow.Cells[2].Value.ToString());
+                edit.BeforeData= DateTime.Parse(dataGridView1.CurrentRow.Cells[3].Value.ToString());
+                db.SaveChanges();
+            }
+        }
+
+        public void EditTechPasport()//изменеие тех паспорта
+        {
+            using (var db = new police_dbContext())
+            {
+                var edit = db.TechPasport.Single(a => a.TechPassId == int.Parse(dataGridView1.CurrentRow.Cells[0].Value.ToString()));
+                edit.Color = dataGridView1.CurrentRow.Cells[2].Value.ToString();
+                edit.CarModel = dataGridView1.CurrentRow.Cells[3].Value.ToString();
+
+                db.SaveChanges();
+            }
+        }
+
+        private void button4_Click(object sender, EventArgs e)//создание
+        {
+
+        }
     }
 }
