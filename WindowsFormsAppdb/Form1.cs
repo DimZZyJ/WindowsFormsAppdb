@@ -378,7 +378,8 @@ namespace WindowsFormsAppdb
 
         private void button4_Click(object sender, EventArgs e)//создание
         {
-
+            Form2 fr2 = new Form2();
+            fr2.Show();
         }
     }
 }
