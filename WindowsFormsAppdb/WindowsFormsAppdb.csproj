@@ -153,7 +153,19 @@
     <Compile Include="Form2.Designer.cs">
       <DependentUpon>Form2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form3.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form3.Designer.cs">
+      <DependentUpon>Form3.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Citizen.cs" />
+    <Compile Include="Models\CopyCitizen.cs" />
+    <Compile Include="Models\CopyEmployee.cs" />
+    <Compile Include="Models\CopyFine.cs" />
+    <Compile Include="Models\CopyInsurance.cs" />
+    <Compile Include="Models\CopyLicense.cs" />
+    <Compile Include="Models\CopyTechPasport.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\Fine.cs" />
     <Compile Include="Models\Insurance.cs" />
@@ -167,6 +179,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form2.resx">
       <DependentUpon>Form2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form3.resx">
+      <DependentUpon>Form3.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

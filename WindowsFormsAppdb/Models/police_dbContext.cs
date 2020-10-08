@@ -16,6 +16,12 @@ namespace WindowsFormsAppdb.Models
         }
 
         public virtual DbSet<Citizen> Citizen { get; set; }
+        public virtual DbSet<CopyCitizen> CopyCitizen { get; set; }
+        public virtual DbSet<CopyEmployee> CopyEmployee { get; set; }
+        public virtual DbSet<CopyFine> CopyFine { get; set; }
+        public virtual DbSet<CopyInsurance> CopyInsurance { get; set; }
+        public virtual DbSet<CopyLicense> CopyLicense { get; set; }
+        public virtual DbSet<CopyTechPasport> CopyTechPasport { get; set; }
         public virtual DbSet<Employee> Employee { get; set; }
         public virtual DbSet<Fine> Fine { get; set; }
         public virtual DbSet<Insurance> Insurance { get; set; }
@@ -44,6 +50,194 @@ namespace WindowsFormsAppdb.Models
                 entity.Property(e => e.CitizenFio)
                     .IsRequired()
                     .HasColumnName("citizen_fio")
+                    .HasMaxLength(50);
+            });
+
+            modelBuilder.Entity<CopyCitizen>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("copy_citizen");
+
+                entity.Property(e => e.CitizenFio)
+                    .HasColumnName("citizen_fio")
+                    .HasMaxLength(50);
+
+                entity.Property(e => e.CitizenId).HasColumnName("citizen_id");
+
+                entity.Property(e => e.ДатаИВремяМодификации).HasColumnName("дата_и_время_модификации");
+
+                entity.Property(e => e.ПользовательВнёсшийИзменения)
+                    .HasColumnName("пользователь_внёсший_изменения")
+                    .HasMaxLength(30);
+
+                entity.Property(e => e.ТипМодификацииВставкаУдаление)
+                    .HasColumnName("тип_модификации_(вставка_удаление_")
+                    .HasMaxLength(50);
+            });
+
+            modelBuilder.Entity<CopyEmployee>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("copy_employee");
+
+                entity.Property(e => e.EmpFio)
+                    .HasColumnName("emp_fio")
+                    .HasMaxLength(150);
+
+                entity.Property(e => e.EmpId).HasColumnName("emp_id");
+
+                entity.Property(e => e.EmpPosition).HasColumnName("emp_position");
+
+                entity.Property(e => e.LeaveDate)
+                    .HasColumnName("leave_date")
+                    .HasColumnType("date");
+
+                entity.Property(e => e.WorkDate)
+                    .HasColumnName("work_date")
+                    .HasColumnType("date");
+
+                entity.Property(e => e.WorkStatus)
+                    .HasColumnName("work_status")
+                    .HasMaxLength(50);
+
+                entity.Property(e => e.ДатаИВремяМодификации).HasColumnName("дата_и_время_модификации");
+
+                entity.Property(e => e.ПользовательВнёсшийИзменения)
+                    .HasColumnName("пользователь_внёсший_изменения")
+                    .HasMaxLength(30);
+
+                entity.Property(e => e.ТипМодификацииВставкаУдаление)
+                    .HasColumnName("тип_модификации_(вставка_удаление_")
+                    .HasMaxLength(50);
+            });
+
+            modelBuilder.Entity<CopyFine>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("copy_fine");
+
+                entity.Property(e => e.Ammount).HasColumnName("ammount");
+
+                entity.Property(e => e.Koap12).HasColumnName("koap12");
+
+                entity.Property(e => e.VialationDate)
+                    .HasColumnName("vialation_date")
+                    .HasColumnType("date");
+
+                entity.Property(e => e.VialationPlace)
+                    .HasColumnName("vialation_place")
+                    .HasMaxLength(150);
+
+                entity.Property(e => e.VialatorId).HasColumnName("vialator_id");
+
+                entity.Property(e => e.VialatorTechPasportId).HasColumnName("vialator_tech_pasport_id");
+
+                entity.Property(e => e.ДатаИВремяМодификации).HasColumnName("дата_и_время_модификации");
+
+                entity.Property(e => e.ПользовательВнёсшийИзменения)
+                    .HasColumnName("пользователь_внёсший_изменения")
+                    .HasMaxLength(30);
+
+                entity.Property(e => e.ТипМодификацииВставкаУдаление)
+                    .HasColumnName("тип_модификации_(вставка_удаление_")
+                    .HasMaxLength(50);
+            });
+
+            modelBuilder.Entity<CopyInsurance>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("copy_insurance");
+
+                entity.Property(e => e.InsuranceBefore)
+                    .HasColumnName("insurance_before")
+                    .HasColumnType("date");
+
+                entity.Property(e => e.InsuranceCivilianId).HasColumnName("insurance_civilian_id");
+
+                entity.Property(e => e.InsuranceFrom)
+                    .HasColumnName("insurance_from")
+                    .HasColumnType("date");
+
+                entity.Property(e => e.InsuranceSerialnumber)
+                    .HasColumnName("insurance_serialnumber")
+                    .HasMaxLength(50);
+
+                entity.Property(e => e.InsuranceTechPasportId).HasColumnName("insurance_tech_pasport_id");
+
+                entity.Property(e => e.ДатаИВремяМодификации).HasColumnName("дата_и_время_модификации");
+
+                entity.Property(e => e.ПользовательВнёсшийИзменения)
+                    .HasColumnName("пользователь_внёсший_изменения")
+                    .HasMaxLength(30);
+
+                entity.Property(e => e.ТипМодификацииВставкаУдаление)
+                    .HasColumnName("тип_модификации_(вставка_удаление_")
+                    .HasMaxLength(50);
+            });
+
+            modelBuilder.Entity<CopyLicense>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("copy_license");
+
+                entity.Property(e => e.BeforeData)
+                    .HasColumnName("before_data")
+                    .HasColumnType("date");
+
+                entity.Property(e => e.FromData)
+                    .HasColumnName("from_data")
+                    .HasColumnType("date");
+
+                entity.Property(e => e.LicenseId).HasColumnName("license_id");
+
+                entity.Property(e => e.OwnerId).HasColumnName("owner_id");
+
+                entity.Property(e => e.ДатаИВремяМодификации).HasColumnName("дата_и_время_модификации");
+
+                entity.Property(e => e.ПользовательВнёсшийИзменения)
+                    .HasColumnName("пользователь_внёсший_изменения")
+                    .HasMaxLength(30);
+
+                entity.Property(e => e.ТипМодификацииВставкаУдаление)
+                    .HasColumnName("тип_модификации_(вставка_удаление_")
+                    .HasMaxLength(50);
+            });
+
+            modelBuilder.Entity<CopyTechPasport>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("copy_tech_pasport");
+
+                entity.Property(e => e.CarModel)
+                    .HasColumnName("car_model")
+                    .HasMaxLength(50);
+
+                entity.Property(e => e.CivTechPassportId).HasColumnName("civ_tech_passport_id");
+
+                entity.Property(e => e.Color)
+                    .HasColumnName("color")
+                    .HasMaxLength(50);
+
+                entity.Property(e => e.TechPassId).HasColumnName("tech_pass_id");
+
+                entity.Property(e => e.Vin)
+                    .HasColumnName("vin")
+                    .HasMaxLength(50);
+
+                entity.Property(e => e.ДатаИВремяМодификации).HasColumnName("дата_и_время_модификации");
+
+                entity.Property(e => e.ПользовательВнёсшийИзменения)
+                    .HasColumnName("пользователь_внёсший_изменения")
+                    .HasMaxLength(30);
+
+                entity.Property(e => e.ТипМодификацииВставкаУдаление)
+                    .HasColumnName("тип_модификации_(вставка_удаление_")
                     .HasMaxLength(50);
             });
 
