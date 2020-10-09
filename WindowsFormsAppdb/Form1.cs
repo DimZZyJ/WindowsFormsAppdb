@@ -326,7 +326,7 @@ namespace WindowsFormsAppdb
                 var edit = db.Employee.Single(a => a.EmpId == int.Parse(dataGridView1.CurrentRow.Cells[0].Value.ToString()));
                 edit.EmpFio = dataGridView1.CurrentRow.Cells[1].Value.ToString();
                 //edit.WorkDate = DateTime.Parse(dataGridView1.CurrentRow.Cells[2].Value.ToString());
-                edit.WorkStatus = dataGridView1.CurrentRow.Cells[3].Value.ToString();
+                //edit.WorkStatus = dataGridView1.CurrentRow.Cells[3].Value.ToString();
                 //edit.LeaveDate = DateTime.Parse(dataGridView1.CurrentRow.Cells[4].Value.ToString());
                 edit.EmpPosition = int.Parse(dataGridView1.CurrentRow.Cells[5].Value.ToString());
                 db.SaveChanges();
