@@ -59,6 +59,7 @@ namespace WindowsFormsAppdb
 
         private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
+            //Bitmap bitmap = new Bitmap(dataGridView1.Size)
             Bitmap bmp = new Bitmap(dataGridView1.Size.Width + 10, dataGridView1.Size.Height + 10);
             dataGridView1.DrawToBitmap(bmp, dataGridView1.Bounds);
             e.Graphics.DrawImage(bmp, 0, 0);
